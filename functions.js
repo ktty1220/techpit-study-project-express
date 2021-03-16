@@ -93,10 +93,18 @@ function getSideList(entries) {
   return sideList;
 }
 
+/**
+ * ブログ記事データをテキスト化してentriesフォルダに保存する
+ */
+function saveEntry(date, title, content) {
+  fs.writeFileSync(path.join(entriesDir, date + '.txt'), title + '\n' + content);
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
   fileNameToEntry,
   getEntries,
-  getSideList
+  getSideList,
+  saveEntry
 };
