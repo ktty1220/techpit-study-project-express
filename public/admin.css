@@ -1,0 +1,46 @@
+/* 共通設定 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 1.5rem;
+}
+
+/* フォーム内部品のフォント設定 */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* コンテンツ領域 */
+body {
+  width: 600px;
+  margin: 10px auto;
+}
+
+/* ブログ記事投稿ページのタイトルと本文 */
+form[name=edit] input[name=title],
+form[name=edit] textarea[name=content] {
+  width: 100%;
+  padding: 4px;
+}
+
+/* ブログ記事投稿ページの本文 */
+form[name=edit] textarea[name=content] {
+  height: 250px;
+}
+
+/* ブログ記事投稿フォームのボタンや戻るリンクの行 */
+form[name=edit] .form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
