@@ -100,11 +100,19 @@ function saveEntry(date, title, content) {
   fs.writeFileSync(path.join(entriesDir, date + '.txt'), title + '\n' + content);
 }
 
+/**
+ * yyyymmddの日付の年月日毎にハイフンを入れる
+ */
+function convertDateFormat(yyyymmdd) {
+  return [yyyymmdd.substr(0, 4), yyyymmdd.substr(4, 2), yyyymmdd.substr(6, 2)].join('-');
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
   fileNameToEntry,
   getEntries,
   getSideList,
-  saveEntry
+  saveEntry,
+  convertDateFormat
 };

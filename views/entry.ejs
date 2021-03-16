@@ -17,11 +17,7 @@
       <div class="entry">
         <h2><%= entry.title %></h2>
         <div class="entry-content">
-          <div class="entry-date"><%=
-            entry.date.substr(0, 4) + '-' +
-            entry.date.substr(4, 2) + '-' +
-            entry.date.substr(6, 2)
-          %></div>
+          <div class="entry-date"><%= convertDateFormat(entry.date) %></div>
           <p><%= entry.content %></p>
         </div>
       </div>

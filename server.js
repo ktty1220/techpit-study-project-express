@@ -12,6 +12,9 @@ app.use(express.static('public'));
 // テンプレートエンジン設定
 app.set('view engine', 'ejs');
 
+// テンプレート内で使用する関数の登録
+app.locals.convertDateFormat = func.convertDateFormat;
+
 // POSTリクエストのパラメータを取得するための設定
 app.use(express.urlencoded({ extended: false }));
 

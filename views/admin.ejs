@@ -25,11 +25,7 @@
       </tr>
       <% entries.forEach((entry) => { %>
       <tr>
-        <td><%=
-          entry.date.substr(0, 4) + '-' +
-          entry.date.substr(4, 2) + '-' +
-          entry.date.substr(6, 2)
-        %></td>
+        <td><%= convertDateFormat(entry.date) %></td>
         <td><%= entry.title %></td>
         <td>
           <div class="operation-column">

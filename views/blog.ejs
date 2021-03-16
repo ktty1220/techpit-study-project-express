@@ -18,11 +18,7 @@
       <div class="entry">
         <h2><a href="/blog/<%= entry.date %>"><%= entry.title %></a></h2>
         <div class="entry-content">
-          <div class="entry-date"><%=
-            entry.date.substr(0, 4) + '-' +
-            entry.date.substr(4, 2) + '-' +
-            entry.date.substr(6, 2)
-          %></div>
+          <div class="entry-date"><%= convertDateFormat(entry.date) %></div>
           <p><%= entry.content %><a class="entry-more" href="/blog/<%= entry.date %>">続きを読む</a></p>
         </div>
       </div>
