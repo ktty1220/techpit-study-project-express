@@ -32,6 +32,7 @@ function fileNameToEntry(file, cut) {
     return line.trim();
   });
   const date = file.substr(0, 8);
+  const image = findImage(date);
   const title = lines.shift();
   let content = lines.join('\n');
 
@@ -40,7 +41,7 @@ function fileNameToEntry(file, cut) {
     content = content.substr(0, 100) + '...';
   }
 
-  return { date, title, content };
+  return { date, title, content, image };
 }
 
 /**
@@ -184,6 +185,21 @@ function createImageDir(date) {
     });
   }
   return targetDir;
+}
+
+/**
+* ブログ記事に紐づく画像ファイルを取得する
+*/
+function findImage(date) {
+  const targetDir = path.join(imagesDir, date);
+  if (!fs.existsSync(targetDir)) {
+    return null;
+  }
+  const files = fs.readdirSync(targetDir);
+  if (files.length === 0) {
+    return null;
+  }
+  return files[0];
 }
 
 // 外部ファイルから参照できる関数の公開設定
