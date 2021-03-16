@@ -1,5 +1,9 @@
 @import 'common.css';
 
+.error {
+  color: #f00;
+}
+
 /* コンテンツ領域 */
 body {
   width: 600px;
