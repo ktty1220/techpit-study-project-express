@@ -6,6 +6,31 @@ body {
   margin: 10px auto;
 }
 
+/* グループ分け */
+section {
+  margin-bottom: 40px;
+}
+
+/* 記事リストの全体枠 */
+table {
+  width: 100%;
+  border: solid 1px #222;
+  border-collapse: collapse;
+}
+
+/* 記事リストの各セル */
+table th,
+table td {
+  border: solid 1px #444;
+  padding: 4px;
+}
+
+/* 記事リストの操作列のリンク配置 */
+table .operation-column {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* ブログ記事投稿ページのタイトルと本文 */
 form[name=edit] input[name=title],
 form[name=edit] textarea[name=content] {
