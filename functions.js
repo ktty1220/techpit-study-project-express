@@ -101,6 +101,13 @@ function saveEntry(date, title, content) {
 }
 
 /**
+ * 指定したブログ記事データテキストをentriesフォルダから削除する
+ */
+function deleteEntry(date) {
+  fs.unlinkSync(path.join(entriesDir, date + '.txt'));
+}
+
+/**
  * yyyymmddの日付の年月日毎にハイフンを入れる
  */
 function convertDateFormat(yyyymmdd) {
@@ -126,6 +133,7 @@ module.exports = {
   getEntries,
   getSideList,
   saveEntry,
+  deleteEntry,
   convertDateFormat,
   getDateString
 };

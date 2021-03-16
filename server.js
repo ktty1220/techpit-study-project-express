@@ -97,6 +97,11 @@ app.post('/admin/post_entry', (request, response) => {
   response.redirect('/admin/');
 });
 
+app.post('/admin/delete_entry', (request, response) => {
+  func.deleteEntry(request.body.date);
+  response.redirect('/admin/');
+});
+
 // Expressサーバー起動
 const server = app.listen(15864, () => {
   console.log('Listening on http://127.0.0.1:' + server.address().port + '/');
