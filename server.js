@@ -71,6 +71,7 @@ app.get('/login', (request, response) => {
 app.post('/auth', (request, response) => {
   const hashed = func.loadPassword();
   if (hashed && bcrypt.compareSync(request.body.password, hashed)) {
+    response.cookie('session', 'login_ok');
     response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
