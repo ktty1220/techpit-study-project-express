@@ -66,6 +66,14 @@ app.get('/login', (request, response) => {
   });
 });
 
+app.post('/auth', (request, response) => {
+  if (request.body.password === 'password') {
+    response.redirect('/admin/');
+  } else {
+    response.redirect('/login?failed=1');
+  }
+});
+
 app.get('/admin/', (request, response) => {
   // ブログ記事ファイル一覧取得
   const files = func.getEntryFiles();
