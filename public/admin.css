@@ -53,3 +53,15 @@ form[name=edit] .form-buttons {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+/* パスワード変更フォーム */
+.password-inputs {
+  margin-bottom: 20px;
+}
+.password-inputs * {
+  display: block;
+}
+.password-inputs input {
+  width: 100px;
+  margin-bottom: 10px;
+}
