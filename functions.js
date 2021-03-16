@@ -5,6 +5,8 @@ const path = require('path');
 
 // ブログ記事テキストファイルが保存されているフォルダ
 const entriesDir = path.join(__dirname, 'entries');
+// 画像ファイル保存先フォルダ
+const imagesDir = path.join(__dirname, 'public/images');
 // ハッシュ化パスワードの保存先ファイル
 const passwordFile = path.join(__dirname, '/.password');
 // セッションID保存ファイル
@@ -171,6 +173,19 @@ function deleteSessionId(sessionId) {
   fs.unlinkSync(sessionFile);
 }
 
+/**
+ * ブログ記事に紐づく画像ファイルを格納するフォルダを作成する
+ */
+function createImageDir(date) {
+  const targetDir = path.join(imagesDir, date);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, {
+      recursive: true
+    });
+  }
+  return targetDir;
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -185,5 +200,6 @@ module.exports = {
   loadPassword,
   saveSessionId,
   loadSessionId,
-  deleteSessionId
+  deleteSessionId,
+  createImageDir
 };
