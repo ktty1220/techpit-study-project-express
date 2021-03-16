@@ -66,30 +66,16 @@ app.get('/admin/', (request, response) => {
   // メインコンテンツに表示するブログ記事
   const entries = func.getEntries(files);
 
-  const date = new Date();
-  const ymd = [
-    date.getFullYear(),
-    ('0' + (date.getMonth() + 1)).substr(-2),
-    ('0' + date.getDate()).substr(-2)
-  ].join('');
-
   response.render('admin', {
     entries,
-    hasTodaysEntry: files.indexOf(ymd + '.txt') !== -1
+    hasTodaysEntry: files.indexOf(func.getDateString() + '.txt') !== -1
   });
 });
 
 app.get('/admin/edit', (request, response) => {
-  const date = new Date();
-  const ymd = [
-    date.getFullYear(),
-    ('0' + (date.getMonth() + 1)).substr(-2),
-    ('0' + date.getDate()).substr(-2)
-  ].join('');
-
   // 新規投稿の場合は記事投稿ページの内容はすべて空(dateは自動設定)
   let entry = {
-    date: ymd,
+    date: func.getDateString(),
     title: '',
     content: ''
   };
