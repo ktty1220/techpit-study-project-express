@@ -54,6 +54,13 @@ h1 a {
   color: #777;
 }
 
+/* ブログ記事画像 */
+.entry .image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
 /* ブログ記事本文 */
 .entry p {
   margin: 0;

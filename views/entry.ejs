@@ -19,6 +19,9 @@
         <div class="entry-content">
           <div class="entry-date"><%= convertDateFormat(entry.date) %></div>
           <p><%= entry.content %></p>
+          <% if (entry.image) { %>
+          <img class="image" src="/images/<%= entry.date %>/<%= entry.image %>">
+          <% } %>
         </div>
       </div>
     </article>
