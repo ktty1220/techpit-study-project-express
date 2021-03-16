@@ -12,7 +12,7 @@
 
   <section>
     <h2><%= pageTitle %></h2>
-    <form name="edit" action="/admin/post_entry" method="post">
+    <form name="edit" action="/admin/post_entry" method="post" enctype="multipart/form-data">
       <div>
         <h3>タイトル</h3>
         <input type="text" name="title" value="<%= entry.title %>">
@@ -20,6 +20,10 @@
       <div>
         <h3>本文</h3>
         <textarea name="content"><%= entry.content %></textarea>
+      </div>
+      <div>
+        <h3>画像</h3>
+        <input type="file" name="image" accept="image/*">
       </div>
       <div class="form-buttons">
         <input type="hidden" name="date" value="<%= entry.date %>">
