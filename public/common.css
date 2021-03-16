@@ -1,0 +1,21 @@
+/* 共通設定 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 1.5rem;
+}
+
+/* フォーム内部品のフォント設定 */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
