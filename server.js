@@ -74,13 +74,13 @@ app.get('/login', (request, response) => {
   });
 });
 
-let sessionId = null;
 app.post('/auth', (request, response) => {
   const hashed = func.loadPassword();
   if (hashed && bcrypt.compareSync(request.body.password, hashed)) {
-    sessionId = cryptoRandomString({
+    const sessionId = cryptoRandomString({
       length: 100
     });
+    func.saveSessionId(sessionId);
     response.cookie('session', sessionId, {
       httpOnly: true
     });
@@ -91,12 +91,13 @@ app.post('/auth', (request, response) => {
 });
 
 app.get('/logout', (request, response) => {
-  sessionId = null;
+  func.deleteSessionId();
   response.redirect('/login');
 });
 
 app.use('/admin/', (request, response, next) => {
   // ログインセッションIDがクッキーに設定されているものと一致しなければログイン画面に戻す
+  const sessionId = func.loadSessionId();
   if (sessionId && request.cookies.session === sessionId) {
     next();
   } else {
