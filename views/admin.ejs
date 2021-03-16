@@ -34,14 +34,19 @@
         <td>
           <div class="operation-column">
             <a href="/admin/edit?date=<%= entry.date %>">編集</a>
-            <a href="/admin/delete">削除</a>
+            <a href="#" data-delete="<%= entry.date %>">削除</a>
           </div>
         </td>
       </tr>
       <% }) %>
     </table>
+
+    <form name="delete" action="/admin/delete_entry" method="post">
+      <input type="hidden" name="date" value="">
+    </form>
   </section>
 
+  <script src="/admin.js"></script>
 </body>
 
 </html>
