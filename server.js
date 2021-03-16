@@ -93,7 +93,7 @@ app.get('/admin/edit', (request, response) => {
 
 app.post('/admin/post_entry', (request, response) => {
   func.saveEntry(request.body.date, request.body.title, request.body.content);
-  response.redirect('/blog/');
+  response.redirect('/admin/');
 });
 
 // Expressサーバー起動
