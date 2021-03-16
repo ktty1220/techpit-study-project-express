@@ -88,6 +88,11 @@ app.post('/auth', (request, response) => {
   }
 });
 
+app.get('/logout', (request, response) => {
+  sessionId = null;
+  response.redirect('/login');
+});
+
 app.use('/admin/', (request, response, next) => {
   // ログインセッションIDがクッキーに設定されているものと一致しなければログイン画面に戻す
   if (sessionId && request.cookies.session === sessionId) {
