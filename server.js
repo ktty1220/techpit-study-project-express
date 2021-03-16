@@ -22,7 +22,8 @@ app.get('/blog/', (request, response) => {
   const sideList = func.getSideList(entries);
 
   // ページに応じた記事一覧に絞る(1ページ5件)
-  const startIndex = (request.query.page - 1) * 5;
+  const currentPage = parseInt(request.query.page, 10);
+  const startIndex = (currentPage - 1) * 5;
   const endIndex = startIndex + 5;
   const displayEntries = entries.slice(startIndex, endIndex);
 
@@ -30,7 +31,7 @@ app.get('/blog/', (request, response) => {
   response.render('blog', {
     entries: displayEntries,
     sideList,
-    currentPage: request.query.page
+    currentPage
   });
 });
 
