@@ -23,6 +23,9 @@
       </div>
       <div>
         <h3>画像</h3>
+        <% if (entry.image) { %>
+        <img class="image" src="/images/<%= entry.date %>/<%= entry.image %>">
+        <% } %>
         <input type="file" name="image" accept="image/*">
       </div>
       <div class="form-buttons">

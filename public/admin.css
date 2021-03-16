@@ -52,6 +52,12 @@ form[name=edit] textarea[name=content] {
   height: 250px;
 }
 
+/* ブログ記事投稿ページで表示する投稿画像 */
+form[name=edit] .image {
+  max-width: 100%;
+  height: auto;
+}
+
 /* ブログ記事投稿フォームのボタンや戻るリンクの行 */
 form[name=edit] .form-buttons {
   display: flex;

@@ -128,7 +128,8 @@ app.get('/admin/edit', (request, response) => {
   let entry = {
     date: func.getDateString(),
     title: '',
-    content: ''
+    content: '',
+    image: null
   };
   let pageTitle = '記事の新規投稿';
 
