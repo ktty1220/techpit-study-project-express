@@ -89,7 +89,6 @@ app.post('/auth', (request, response) => {
 });
 
 app.use('/admin/', (request, response, next) => {
-  console.log(request.cookies.session);
   // ログインセッションIDがクッキーに設定されているものと一致しなければログイン画面に戻す
   if (sessionId && request.cookies.session === sessionId) {
     next();
