@@ -20,6 +20,10 @@ app.locals.convertDateFormat = func.convertDateFormat;
 // POSTリクエストのパラメータを取得するための設定
 app.use(express.urlencoded({ extended: false }));
 
+// ブラウザから送信されてきたクッキーを取得するための設定
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 // ルーティング設定
 app.get('/blog/', (request, response) => {
   // ブログ記事ファイル一覧取得
@@ -75,6 +79,16 @@ app.post('/auth', (request, response) => {
     response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
+  }
+});
+
+app.use('/admin/', (request, response, next) => {
+  console.log(request.cookies.session);
+  // Cookieのsessionの値が'login_ok'でなければログイン画面に戻す
+  if (request.cookies.session === 'login_ok') {
+    next();
+  } else {
+    response.redirect('/login');
   }
 });
 
