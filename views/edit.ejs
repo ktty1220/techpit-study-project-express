@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>記事の新規投稿 | 管理者用ページ</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body>
+  <h1>管理者用ページ</h1>
+
+  <section>
+    <h2>記事の新規投稿</h2>
+    <form name="edit" action="/admin/post_entry">
+      <div>
+        <h3>タイトル</h3>
+        <input type="text" name="title">
+      </div>
+      <div>
+        <h3>本文</h3>
+        <textarea name="content"></textarea>
+      </div>
+      <div class="form-buttons">
+        <input type="submit" value="送信">
+        <a href="/blog/">戻る</a>
+      </div>
+    </form>
+  </section>
+
+</body>
+
+</html>
