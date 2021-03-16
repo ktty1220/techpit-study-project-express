@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>管理者用ページ</title>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body>
+  <h1>管理者用ページ</h1>
+
+  <section>
+    <h2>記事の新規投稿</h2>
+    <a href="/admin/edit">新規投稿ページへ</a>
+  </section>
+
+  <section>
+    <h2>記事の編集/削除</h2>
+    <table>
+      <tr>
+        <th>投稿日時</th>
+        <th>タイトル</th>
+        <th>操作</th>
+      </tr>
+      <% entries.forEach((entry) => { %>
+      <tr>
+        <td><%=
+          entry.date.substr(0, 4) + '-' +
+          entry.date.substr(4, 2) + '-' +
+          entry.date.substr(6, 2)
+        %></td>
+        <td><%= entry.title %></td>
+        <td>
+          <div class="operation-column">
+            <a href="/admin/edit">編集</a>
+            <a href="/admin/delete">削除</a>
+          </div>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </section>
+
+</body>
+
+</html>
