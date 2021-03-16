@@ -7,6 +7,8 @@ const path = require('path');
 const entriesDir = path.join(__dirname, 'entries');
 // ハッシュ化パスワードの保存先ファイル
 const passwordFile = path.join(__dirname, '/.password');
+// セッションID保存ファイル
+const sessionFile = path.join(__dirname, '/.session');
 
 /**
  * ブログ記事フォルダ内のファイル名一覧をファイル名の降順でソートした配列で取得
@@ -145,6 +147,30 @@ function loadPassword() {
   return null;
 }
 
+/**
+ * セッションIDをファイルに保存
+ */
+function saveSessionId(sessionId) {
+  fs.writeFileSync(sessionFile, sessionId);
+}
+
+/**
+ * セッションIDをファイルから取得
+ */
+function loadSessionId() {
+  if (fs.existsSync(sessionFile)) {
+    return fs.readFileSync(sessionFile, 'utf-8');
+  }
+  return null;
+}
+
+/**
+ * セッションIDファイルを削除
+ */
+function deleteSessionId(sessionId) {
+  fs.unlinkSync(sessionFile);
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -156,5 +182,8 @@ module.exports = {
   convertDateFormat,
   getDateString,
   savePassword,
-  loadPassword
+  loadPassword,
+  saveSessionId,
+  loadSessionId,
+  deleteSessionId
 };
