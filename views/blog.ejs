@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>担当者Aのブログ</title>
+  <link rel="stylesheet" href="/blog.css">
+</head>
+
+<body>
+
+  <!-- メインコンテンツ -->
+  <div class="main-content">
+    <h1><a href="/blog/">担当者Aのブログ</a></h1>
+
+    <article>
+      <% entries.forEach((entry) => { %>
+      <div class="entry">
+        <h2><a href="/blog/<%= entry.date %>"><%= entry.title %></a></h2>
+        <div class="entry-content">
+          <div class="entry-date"><%=
+            entry.date.substr(0, 4) + '-' +
+            entry.date.substr(4, 2) + '-' +
+            entry.date.substr(6, 2)
+          %></div>
+          <p><%= entry.content %><a class="entry-more" href="/blog/<%= entry.date %>">続きを読む</a></p>
+        </div>
+      </div>
+      <% }) %>
+    </article>
+  </div>
+
+  <!-- サイドバー -->
+  <div class="side-bar">
+    <div>
+      <% sideList.forEach((listData) => { %>
+      <% const [yyyymm, listEntries] = listData; %>
+      <h3><%= yyyymm %></h3>
+      <ul>
+        <% listEntries.forEach((entry) => { %>
+        <li><a href="/blog/<%= entry.date %>"><%= entry.title %></a></li>
+        <% }) %>
+      </ul>
+      <% }) %>
+    </div>
+  </div>
+</body>
+
+</html>

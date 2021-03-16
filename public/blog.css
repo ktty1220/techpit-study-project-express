@@ -1,0 +1,122 @@
+/* 共通設定 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 1.5rem;
+}
+
+/* メインコンテンツ */
+.main-content {
+  width: 540px;
+  width: clamp(40ch, 50vw, 100ch);
+  margin: 10px auto 10px 320px;
+}
+
+/* ブログタイトル */
+h1 {
+  margin-top: 0;
+}
+h1 a {
+  color: #000;
+  text-decoration: none;
+}
+
+/* ブログ記事 */
+.entry {
+  border: solid 1px #ccc;
+  margin: 20px 0;
+  padding: 2px;
+}
+
+/* ブログ記事のタイトル */
+.entry h2 {
+  margin: 0;
+  background-color: #248;
+  color: #fff;
+  font-size: 1.3em;
+  padding: 4px 8px;
+}
+
+/* ブログ記事のタイトルリンク */
+.entry h2 a {
+  color: #ff8;
+}
+.entry h2 a:hover {
+  color: #faa;
+}
+
+/* ブログ記事枠 */
+.entry .entry-content {
+  padding: 4px 8px 8px;
+}
+
+/* ブログ記事日付 */
+.entry .entry-date {
+  text-align: right;
+  padding-right: 2px;
+  margin-bottom: 8px;
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* ブログ記事本文 */
+.entry p {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* 続きを読むリンク */
+.entry .entry-more {
+  margin-left: 8px;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+.entry .entry-more:hover {
+  color: #f44;
+}
+
+/* サイドバー */
+.side-bar {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  width: 280px;
+}
+
+/* サイドバー年月 */
+.side-bar h3 {
+  margin: 0 0 10px;
+}
+
+/* サイドバー記事リスト */
+.side-bar ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0 0 0 10px;
+}
+
+/* サイドバー記事 */
+.side-bar li {
+  font-size: 1em;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* サイドバー記事リンク */
+.side-bar li a:hover {
+  color: #f44;
+}

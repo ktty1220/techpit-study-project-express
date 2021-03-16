@@ -1,0 +1,16 @@
+{
+  "name": "techpit-study-project-express",
+  "version": "1.0.0",
+  "description": "Techpit「実務を意識した JavaScript の WEB システム開発体験を通して知識と考え方を身に付けよう！」教材プロジェクト",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1"
+  },
+  "repository": "https://github.com/ktty1220/techpit-study-project-express",
+  "author": "ktty1220 <ktty1220@gmail.com>",
+  "license": "MIT"
+}
