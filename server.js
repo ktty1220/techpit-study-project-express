@@ -23,7 +23,7 @@ app.get('/blog/', (request, response) => {
 
   // ページに応じた記事一覧に絞る(1ページ5件)
   const entriesPerPage = 5;
-  const currentPage = parseInt(request.query.page, 10);
+  const currentPage = parseInt(request.query.page || 1, 10);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
   const displayEntries = entries.slice(startIndex, endIndex);
