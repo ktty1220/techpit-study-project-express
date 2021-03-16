@@ -1,3 +1,5 @@
+// Node.js内蔵のファイルパス関連モジュールを読み込み
+const path = require('path');
 // Expressサーバーパッケージを読み込み
 const express = require('express');
 // パスワードハッシュ化パッケージを読み込み
@@ -142,8 +144,30 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
-  func.saveEntry(request.body.date, request.body.title, request.body.content);
-  response.redirect('/admin/');
+  const { date, title, content } = request.body;
+  func.saveEntry(date, title, content);
+
+  // ファイルがアップロードされているかチェック
+  if (!request.files) {
+    response.redirect('/admin/');
+    return;
+  }
+
+  // アップロードされたファイルが画像かチェック
+  const { image } = request.files;
+  if (!image.mimetype.startsWith('image/')) {
+    response.redirect('/admin/');
+    return;
+  }
+
+  // アップロードされたファイルを保存
+  const saveDir = func.createImageDir(date);
+  image.mv(path.join(saveDir, image.name), (err) => {
+    if (err) {
+      console.log(err);
+    }
+    response.redirect('/admin/');
+  });
 });
 
 app.post('/admin/delete_entry', (request, response) => {
