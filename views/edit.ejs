@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>記事の新規投稿 | 管理者用ページ</title>
+  <title><%= pageTitle %> | 管理者用ページ</title>
   <link rel="stylesheet" href="/admin.css">
 </head>
 
@@ -11,7 +11,7 @@
   <h1>管理者用ページ</h1>
 
   <section>
-    <h2>記事の新規投稿</h2>
+    <h2><%= pageTitle %></h2>
     <form name="edit" action="/admin/post_entry" method="post">
       <div>
         <h3>タイトル</h3>
