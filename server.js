@@ -62,8 +62,14 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
-  console.log(request.body);
-  response.send('OK');
+  const date = new Date();
+  const ymd = [
+    date.getFullYear(),
+    ('0' + (date.getMonth() + 1)).substr(-2),
+    ('0' + date.getDate()).substr(-2)
+  ].join('');
+  func.saveEntry(ymd, request.body.title, request.body.content);
+  response.redirect('/blog/');
 });
 
 // Expressサーバー起動
