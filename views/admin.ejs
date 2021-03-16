@@ -12,7 +12,11 @@
 
   <section>
     <h2>記事の新規投稿</h2>
+    <% if (hasTodaysEntry) { %>
+    <span>本日はすでに記事を投稿済みです。</span>
+    <% } else { %>
     <a href="/admin/edit">新規投稿ページへ</a>
+    <% } %>
   </section>
 
   <section>
