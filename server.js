@@ -58,7 +58,7 @@ app.get('/admin/edit', (request, response) => {
   response.render('edit');
 });
 
-app.get('/admin/post_entry', (request, response) => {
+app.post('/admin/post_entry', (request, response) => {
   console.log(request.query);
   response.send('OK');
 });
@@ -67,3 +67,12 @@ app.get('/admin/post_entry', (request, response) => {
 const server = app.listen(15864, () => {
   console.log('Listening on http://127.0.0.1:' + server.address().port + '/');
 });
+
+// Expressで処理される前の通信生データを表示
+/*
+server.on('connection', (socket) => {
+  socket.on('data', (data) => {
+    console.log(data.toString());
+  });
+});
+*/
