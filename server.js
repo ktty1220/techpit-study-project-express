@@ -60,6 +60,12 @@ app.get('/blog/:date', (request, response) => {
   });
 });
 
+app.get('/login', (request, response) => {
+  response.render('login', {
+    message: (request.query.failed) ? 'ログインできませんでした。' : ''
+  });
+});
+
 app.get('/admin/', (request, response) => {
   // ブログ記事ファイル一覧取得
   const files = func.getEntryFiles();
