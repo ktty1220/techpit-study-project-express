@@ -29,7 +29,8 @@
       <% }) %>
     </article>
     <div class="page-links">
-      <a href="?page=3">次のページへ</a>
+      <a href="?page=<%= currentPage - 1 %>">前のページへ</a>
+      <a href="?page=<%= currentPage + 1 %>">次のページへ</a>
     </div>
   </div>
 

@@ -29,7 +29,8 @@ app.get('/blog/', (request, response) => {
   // テンプレートを使用して出力したHTMLをクライアントに送信
   response.render('blog', {
     entries: displayEntries,
-    sideList
+    sideList,
+    currentPage: request.query.page
   });
 });
 
