@@ -114,6 +114,9 @@ function saveEntry(date, title, content, imgdel) {
  * 指定したブログ記事データテキストをentriesフォルダから削除する
  */
 function deleteEntry(date) {
+  if (deleteImage(date)) {
+    fs.rmdirSync(path.join(imagesDir, date));
+  }
   fs.unlinkSync(path.join(entriesDir, date + '.txt'));
 }
 
