@@ -1,5 +1,7 @@
 // Expressサーバーパッケージを読み込み
 const express = require('express');
+// パスワードハッシュ化パッケージを読み込み
+const bcrypt = require('bcryptjs');
 // 同じフォルダにあるfunctions.jsを読み込み
 const func = require('./functions');
 
@@ -67,7 +69,8 @@ app.get('/login', (request, response) => {
 });
 
 app.post('/auth', (request, response) => {
-  if (request.body.password === 'password') {
+  const hashed = func.loadPassword();
+  if (hashed && bcrypt.compareSync(request.body.password, hashed)) {
     response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
