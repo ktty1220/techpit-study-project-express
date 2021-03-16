@@ -81,7 +81,9 @@ app.post('/auth', (request, response) => {
     sessionId = cryptoRandomString({
       length: 100
     });
-    response.cookie('session', sessionId);
+    response.cookie('session', sessionId, {
+      httpOnly: true
+    });
     response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
