@@ -22,16 +22,19 @@ app.get('/blog/', (request, response) => {
   const sideList = func.getSideList(entries);
 
   // ページに応じた記事一覧に絞る(1ページ5件)
+  const entriesPerPage = 5;
   const currentPage = parseInt(request.query.page, 10);
-  const startIndex = (currentPage - 1) * 5;
-  const endIndex = startIndex + 5;
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const endIndex = startIndex + entriesPerPage;
   const displayEntries = entries.slice(startIndex, endIndex);
+  const lastPage = Math.ceil(entries.length / entriesPerPage);
 
   // テンプレートを使用して出力したHTMLをクライアントに送信
   response.render('blog', {
     entries: displayEntries,
     sideList,
-    currentPage
+    currentPage,
+    lastPage
   });
 });
 
