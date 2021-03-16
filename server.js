@@ -2,6 +2,8 @@
 const express = require('express');
 // パスワードハッシュ化パッケージを読み込み
 const bcrypt = require('bcryptjs');
+// ランダム文字列生成パッケージを読み込み
+const cryptoRandomString = require('crypto-random-string');
 // 同じフォルダにあるfunctions.jsを読み込み
 const func = require('./functions');
 
@@ -72,10 +74,14 @@ app.get('/login', (request, response) => {
   });
 });
 
+let sessionId = null;
 app.post('/auth', (request, response) => {
   const hashed = func.loadPassword();
   if (hashed && bcrypt.compareSync(request.body.password, hashed)) {
-    response.cookie('session', 'login_ok');
+    sessionId = cryptoRandomString({
+      length: 100
+    });
+    response.cookie('session', sessionId);
     response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
@@ -84,8 +90,8 @@ app.post('/auth', (request, response) => {
 
 app.use('/admin/', (request, response, next) => {
   console.log(request.cookies.session);
-  // Cookieのsessionの値が'login_ok'でなければログイン画面に戻す
-  if (request.cookies.session === 'login_ok') {
+  // ログインセッションIDがクッキーに設定されているものと一致しなければログイン画面に戻す
+  if (sessionId && request.cookies.session === sessionId) {
     next();
   } else {
     response.redirect('/login');
