@@ -142,7 +142,6 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
-  console.log(request.files);
   func.saveEntry(request.body.date, request.body.title, request.body.content);
   response.redirect('/admin/');
 });
