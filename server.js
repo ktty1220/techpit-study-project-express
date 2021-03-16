@@ -26,6 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+// アップロードされたファイルを取得するための設定
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 // ルーティング設定
 app.get('/blog/', (request, response) => {
   // ブログ記事ファイル一覧取得
@@ -138,6 +142,7 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
+  console.log(request.files);
   func.saveEntry(request.body.date, request.body.title, request.body.content);
   response.redirect('/admin/');
 });
