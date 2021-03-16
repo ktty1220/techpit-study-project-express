@@ -12,6 +12,9 @@ app.use(express.static('public'));
 // テンプレートエンジン設定
 app.set('view engine', 'ejs');
 
+// POSTリクエストのパラメータを取得するための設定
+app.use(express.urlencoded({ extended: false }));
+
 // ルーティング設定
 app.get('/blog/', (request, response) => {
   // ブログ記事ファイル一覧取得
@@ -59,7 +62,7 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
-  console.log(request.query);
+  console.log(request.body);
   response.send('OK');
 });
 
