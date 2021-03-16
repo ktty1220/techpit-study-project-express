@@ -15,13 +15,14 @@
     <form name="edit" action="/admin/post_entry" method="post">
       <div>
         <h3>タイトル</h3>
-        <input type="text" name="title">
+        <input type="text" name="title" value="<%= entry.title %>">
       </div>
       <div>
         <h3>本文</h3>
-        <textarea name="content"></textarea>
+        <textarea name="content"><%= entry.content %></textarea>
       </div>
       <div class="form-buttons">
+        <input type="hidden" name="date" value="<%= entry.date %>">
         <input type="submit" value="送信">
         <a href="/blog/">戻る</a>
       </div>
