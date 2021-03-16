@@ -57,6 +57,15 @@ app.get('/blog/:date', (request, response) => {
   });
 });
 
+app.get('/admin/', (request, response) => {
+  // ブログ記事ファイル一覧取得
+  const files = func.getEntryFiles();
+  // メインコンテンツに表示するブログ記事
+  const entries = func.getEntries(files);
+
+  response.render('admin', { entries });
+});
+
 app.get('/admin/edit', (request, response) => {
   response.render('edit');
 });
