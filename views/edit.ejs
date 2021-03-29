@@ -24,7 +24,14 @@
       <div>
         <h3>画像</h3>
         <% if (entry.image) { %>
+        <div>
+          <label class="checkbox-label">
+            <input type="checkbox" name="imgdel" value="1">
+            <span>この画像を削除する</span>
+          </label>
+        </div>
         <img class="image" src="/images/<%= entry.date %>/<%= entry.image %>">
+        <h4>別の画像に差し替える</h4>
         <% } %>
         <input type="file" name="image" accept="image/*">
       </div>
