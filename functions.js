@@ -103,7 +103,10 @@ function getSideList(entries) {
 /**
  * ブログ記事データをテキスト化してentriesフォルダに保存する
  */
-function saveEntry(date, title, content) {
+function saveEntry(date, title, content, imgdel) {
+  if (imgdel) {
+    deleteImage(date);
+  }
   fs.writeFileSync(path.join(entriesDir, date + '.txt'), title + '\n' + content);
 }
 
@@ -202,6 +205,21 @@ function findImage(date) {
   return files[0];
 }
 
+/**
+ * ブログ記事に紐づけられている画像ファイルを削除する
+ */
+function deleteImage(date) {
+  const targetDir = path.join(imagesDir, date);
+  if (!fs.existsSync(targetDir)) {
+    return false;
+  }
+  const files = fs.readdirSync(targetDir);
+  files.forEach((file) => {
+    fs.unlinkSync(path.join(targetDir, file));
+  });
+  return true;
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -217,5 +235,6 @@ module.exports = {
   saveSessionId,
   loadSessionId,
   deleteSessionId,
-  createImageDir
+  createImageDir,
+  deleteImage
 };
