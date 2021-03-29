@@ -58,6 +58,16 @@ form[name=edit] .image {
   height: auto;
 }
 
+/* ブログ記事投稿ページの投稿画像削除チェックボックス */
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.checkbox-label > span {
+  line-height: 1;
+}
+
 /* ブログ記事投稿フォームのボタンや戻るリンクの行 */
 form[name=edit] .form-buttons {
   display: flex;
