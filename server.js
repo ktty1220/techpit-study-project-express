@@ -145,8 +145,8 @@ app.get('/admin/edit', (request, response) => {
 });
 
 app.post('/admin/post_entry', (request, response) => {
-  const { date, title, content } = request.body;
-  func.saveEntry(date, title, content);
+  const { date, title, content, imgdel } = request.body;
+  func.saveEntry(date, title, content, imgdel);
 
   // ファイルがアップロードされているかチェック
   if (!request.files) {
@@ -160,6 +160,9 @@ app.post('/admin/post_entry', (request, response) => {
     response.redirect('/admin/');
     return;
   }
+
+  // 既存のアップロードファイルを削除
+  func.deleteImage(date);
 
   // アップロードされたファイルを保存
   const saveDir = func.createImageDir(date);
