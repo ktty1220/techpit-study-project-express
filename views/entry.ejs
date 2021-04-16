@@ -39,13 +39,16 @@
       </ul>
       <form name="comment" action="/blog/<%= entry.date %>/post_comment" method="post">
         <label>コメントを投稿する</label>
-        <input type="text" name="comment">
+        <input type="text" name="comment" value="<%= commentInput %>">
         <div class="submit-button">
           <div class="captcha-image"></div>
           <div class="captcha-message">左の画像に表示されている文字を<br>入力してください。（<a href="#">画像を変更</a>）</div>
           <input type="text" name="captcha" maxlength="4">
           <input type="submit" value="送信">
         </div>
+        <% if (message) { %>
+        <p class="error"><%= message %></p>
+        <% } %>
       </form>
     </section>
   </div>

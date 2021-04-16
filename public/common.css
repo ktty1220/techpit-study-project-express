@@ -19,3 +19,11 @@ button, input, select, textarea {
   font-family: inherit;
   font-size: 100%;
 }
+
+.error {
+  color: #f00;
+}
+
+.info {
+  color: #00f;
+}
