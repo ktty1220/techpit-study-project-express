@@ -128,7 +128,7 @@ app.get('/captcha_image', (request, response) => {
 
 app.get('/login', (request, response) => {
   response.render('login', {
-    message: (request.query.failed) ? 'ログインできませんでした。' : ''
+    message: request.flash('login_error')[0]
   });
 });
 
@@ -140,7 +140,10 @@ app.post('/auth', (request, response) => {
       response.redirect('/admin/');
     });
   } else {
-    response.redirect('/login?failed=1');
+    request.flash('login_error', 'ログインできませんでした。');
+    request.session.save(() => {
+      response.redirect('/login');
+    });
   }
 });
 
