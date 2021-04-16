@@ -248,6 +248,30 @@ function saveComment(date, comment) {
   fs.writeFileSync(path.join(targetDir, id + '.txt'), comment);
 }
 
+/**
+ * 指定した記事のコメント一覧を取得
+ */
+function getCommentList(date) {
+  const comments = [];
+
+  const targetDir = path.join(commentsDir, date);
+  if (!fs.existsSync(targetDir)) {
+    return comments;
+  }
+
+  const files = fs.readdirSync(targetDir).sort();
+  files.forEach((file) => {
+    const timeObj = new Date(parseInt(file.split('-')[0], 10));
+    comments.push({
+      id: path.basename(file, '.txt'),
+      comment: fs.readFileSync(path.join(targetDir, file), 'utf-8'),
+      posted: timeObj.toString()
+    });
+  });
+
+  return comments;
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -265,5 +289,6 @@ module.exports = {
   deleteSessionId,
   createImageDir,
   deleteImage,
-  saveComment
+  saveComment,
+  getCommentList
 };
