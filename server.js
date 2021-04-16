@@ -168,7 +168,8 @@ app.get('/admin/', (request, response) => {
 
   response.render('admin', {
     entries,
-    hasTodaysEntry: files.indexOf(func.getDateString() + '.txt') !== -1
+    hasTodaysEntry: files.indexOf(func.getDateString() + '.txt') !== -1,
+    uploadError: request.flash('upload_error')[0]
   });
 });
 
@@ -209,7 +210,10 @@ app.post('/admin/post_entry', (request, response) => {
   // アップロードされたファイルが画像かチェック
   const { image } = request.files;
   if (!image.mimetype.startsWith('image/')) {
-    response.redirect('/admin/');
+    request.flash('upload_error', 'アップロードされたファイルは画像ではないので保存しませんでした。');
+    request.session.save(() => {
+      response.redirect('/admin/');
+    });
     return;
   }
 
@@ -220,9 +224,11 @@ app.post('/admin/post_entry', (request, response) => {
   const saveDir = func.createImageDir(date);
   image.mv(path.join(saveDir, image.name), (err) => {
     if (err) {
-      console.log(err);
+      request.flash('upload_error', err.message);
     }
-    response.redirect('/admin/');
+    request.session.save(() => {
+      response.redirect('/admin/');
+    });
   });
 });
 
