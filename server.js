@@ -67,9 +67,12 @@ app.get('/blog/:date', (request, response) => {
   const sideList = func.getSideList(entries);
 
   // ブログ記事を取得してテンプレートに渡して出力したHTMLをクライアントに送信
-  const entry = func.fileNameToEntry(request.params.date + '.txt', false);
+  const { date } = request.params;
+  const entry = func.fileNameToEntry(date + '.txt', false);
+  const commentList = func.getCommentList(date);
   response.render('entry', {
     entry,
+    commentList,
     sideList
   });
 });
