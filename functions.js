@@ -121,6 +121,7 @@ function deleteEntry(date) {
   if (deleteImage(date)) {
     fs.rmdirSync(path.join(imagesDir, date));
   }
+  deleteAllComment(date);
   fs.unlinkSync(path.join(entriesDir, date + '.txt'));
 }
 
@@ -296,6 +297,21 @@ function deleteComment(date, idArray) {
       fs.unlinkSync(file);
     }
   });
+}
+
+/**
+ * 投稿コメントをフォルダごと削除
+ */
+function deleteAllComment(date) {
+  const targetDir = path.join(commentsDir, date);
+  if (!fs.existsSync(targetDir)) {
+    return;
+  }
+  const files = fs.readdirSync(targetDir);
+  files.forEach((file) => {
+    fs.unlinkSync(path.join(targetDir, file));
+  });
+  fs.rmdirSync(targetDir);
 }
 
 // 外部ファイルから参照できる関数の公開設定
