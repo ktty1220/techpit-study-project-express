@@ -1,13 +1,5 @@
 @import 'common.css';
 
-.error {
-  color: #f00;
-}
-
-.info {
-  color: #00f;
-}
-
 /* コンテンツ領域 */
 body {
   width: 600px;
