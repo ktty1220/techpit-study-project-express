@@ -4,6 +4,10 @@
   color: #f00;
 }
 
+.info {
+  color: #00f;
+}
+
 /* コンテンツ領域 */
 body {
   width: 600px;
@@ -20,24 +24,33 @@ h1 .logout {
   font-size: 50%;
 }
 
-/* 記事リストの全体枠 */
+/* 記事リスト・コメントリストの全体枠 */
 table {
   width: 100%;
   border: solid 1px #222;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-/* 記事リストの各セル */
+/* 記事リスト・コメントリストの各セル */
 table th,
 table td {
   border: solid 1px #444;
   padding: 4px;
 }
 
-/* 記事リストの操作列のリンク配置 */
+/* 記事リスト・コメントリストの操作列のリンク配置 */
 table .operation-column {
   display: flex;
   justify-content: space-around;
+}
+
+/* コメントリストの項目 */
+#comment-list .posted {
+  width: 20ch;
+}
+#comment-list .comment-delete {
+  width: 5ch;
 }
 
 /* ブログ記事投稿ページのタイトルと本文 */
