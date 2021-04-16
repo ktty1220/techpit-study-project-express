@@ -13,6 +13,10 @@
     <span class="logout">(<a href="/logout">ログアウト</a>)</span>
   </h1>
 
+  <% if (uploadError) { %>
+  <p class="error"><%= uploadError %></p>
+  <% } %>
+
   <section>
     <h2>記事の新規投稿</h2>
     <% if (hasTodaysEntry) { %>
