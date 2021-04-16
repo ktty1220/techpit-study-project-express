@@ -2,9 +2,13 @@
 const fs = require('fs');
 // Node.js内蔵のファイルパス関連モジュールを読み込み
 const path = require('path');
+// ランダム文字列生成パッケージを読み込み
+const cryptoRandomString = require('crypto-random-string');
 
 // ブログ記事テキストファイルが保存されているフォルダ
 const entriesDir = path.join(__dirname, 'entries');
+// コメントファイル保存先フォルダ
+const commentsDir = path.join(__dirname, 'comments');
 // 画像ファイル保存先フォルダ
 const imagesDir = path.join(__dirname, 'public/images');
 // ハッシュ化パスワードの保存先ファイル
@@ -223,6 +227,27 @@ function deleteImage(date) {
   return true;
 }
 
+/**
+ * 投稿コメントを保存
+ */
+function saveComment(date, comment) {
+  const targetDir = path.join(commentsDir, date);
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, {
+      recursive: true
+    });
+  }
+
+  const id = [
+    Date.now(),
+    cryptoRandomString({
+      length: 20
+    })
+  ].join('-');
+
+  fs.writeFileSync(path.join(targetDir, id + '.txt'), comment);
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -239,5 +264,6 @@ module.exports = {
   loadSessionId,
   deleteSessionId,
   createImageDir,
-  deleteImage
+  deleteImage,
+  saveComment
 };
