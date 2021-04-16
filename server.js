@@ -32,6 +32,26 @@ app.use(cookieParser());
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
+// セッション管理設定
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+app.use(
+  session({
+    secret: 'my secret',
+    name: 'new_session',
+    saveUninitialized: true,
+    resave: false,
+    cookie: {
+      httpOnly: true
+    },
+    store: new FileStore({
+      path: './sessions',
+      ttl: 86400,
+      reapInterval: 3600
+    })
+  })
+);
+
 // ルーティング設定
 app.get('/blog/', (request, response) => {
   // ブログ記事ファイル一覧取得
