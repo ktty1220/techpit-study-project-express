@@ -117,7 +117,34 @@ h1 a {
 
 /* コメント送信ボタン行 */
 form[name=comment] .submit-button {
-  text-align: right;
+  display: flex;
+  align-items: center;
+}
+form[name=comment] .submit-button > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+/* コメント送信ボタン */
+form[name=comment] input[type=submit] {
+  margin-left: auto;
+}
+
+/* CAPTCHA画像 */
+form[name=comment] .captcha-image {
+  width: 150px;
+  height: 50px;
+}
+
+/* CAPTCHA説明 */
+form[name=comment] .captcha-message {
+  line-height: 1.1;
+  font-size: 1.3rem;
+}
+
+/* CAPTCHA入力欄 */
+form[name=comment] input[name=captcha] {
+  padding: 4px 8px;
+  width: 8ch;
 }
 
 /* 前のページ/次のページリンク */
