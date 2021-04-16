@@ -134,13 +134,25 @@ function convertDateFormat(yyyymmdd) {
 /**
  * 日付文字列を取得(引数省略時は本日の日付)
  */
-function getDateString(date = new Date()) {
+function getDateString(date = new Date(), separator = '') {
   const ymd = [
     date.getFullYear(),
     ('0' + (date.getMonth() + 1)).substr(-2),
     ('0' + date.getDate()).substr(-2)
-  ].join('');
+  ].join(separator);
   return ymd;
+}
+
+/**
+ * 時間文字列を取得(引数省略時は本日の日付)
+ */
+function getTimeString(date = new Date(), separator = '') {
+  const time = [
+    ('0' + date.getHours()).substr(-2),
+    ('0' + date.getMinutes()).substr(-2),
+    ('0' + date.getSeconds()).substr(-2)
+  ].join(separator);
+  return time;
 }
 
 /**
@@ -265,7 +277,7 @@ function getCommentList(date) {
     comments.push({
       id: path.basename(file, '.txt'),
       comment: fs.readFileSync(path.join(targetDir, file), 'utf-8'),
-      posted: timeObj.toString()
+      posted: getDateString(timeObj, '-') + ' ' + getTimeString(timeObj, ':')
     });
   });
 
