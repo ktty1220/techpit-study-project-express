@@ -4,6 +4,8 @@ const path = require('path');
 const express = require('express');
 // パスワードハッシュ化パッケージを読み込み
 const bcrypt = require('bcryptjs');
+// CAPTCHA作成パッケージを読み込み
+const svgCaptcha = require('svg-captcha');
 // 同じフォルダにあるfunctions.jsを読み込み
 const func = require('./functions');
 
@@ -102,6 +104,13 @@ app.post('/blog/:date/post_comment', (request, response) => {
     func.saveComment(date, comment);
   }
   response.redirect('/blog/' + date);
+});
+
+app.get('/captcha_image', (request, response) => {
+  const captcha = svgCaptcha.create();
+  request.session.captcha = captcha.text;
+  response.type('svg');
+  response.send(captcha.data);
 });
 
 app.get('/login', (request, response) => {
