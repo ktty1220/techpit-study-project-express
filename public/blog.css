@@ -92,6 +92,34 @@ h1 a {
   color: #f44;
 }
 
+/* 一言コメント枠 */
+#comment-list {
+  margin-top: 30px;
+}
+
+/* コメント一覧 */
+#comment-list ul {
+  margin-bottom: 30px;
+}
+
+/* コメント投稿日時 */
+#comment-list ul small {
+  color: #777;
+  margin-left: 5px;
+}
+
+/* コメント入力欄 */
+#comment-list input[name=comment] {
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* コメント送信ボタン行 */
+form[name=comment] .submit-button {
+  text-align: right;
+}
+
 /* 前のページ/次のページリンク */
 .page-links {
   display: flex;
