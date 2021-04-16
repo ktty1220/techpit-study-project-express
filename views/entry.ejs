@@ -30,10 +30,12 @@
     <section id="comment-list">
       <h3>一言コメント一覧</h3>
       <ul>
+        <% commentList.forEach((comment) => { %>
         <li>
-          <span>ダミーコメント</span>
-          <small>2020-11-01 00:00:00</small>
+          <span><%= comment.comment %></span>
+          <small><%= comment.posted %></small>
         </li>
+        <% }) %>
       </ul>
       <form name="comment" action="/blog/<%= entry.date %>/post_comment" method="post">
         <label>コメントを投稿する</label>
