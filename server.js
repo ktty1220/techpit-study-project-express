@@ -74,6 +74,15 @@ app.get('/blog/:date', (request, response) => {
   });
 });
 
+app.post('/blog/:date/post_comment', (request, response) => {
+  const { date } = request.params;
+  const { comment } = request.body;
+  if (comment) {
+    func.saveComment(date, comment);
+  }
+  response.redirect('/blog/' + date);
+});
+
 app.get('/login', (request, response) => {
   response.render('login', {
     message: (request.query.failed) ? 'ログインできませんでした。' : ''
