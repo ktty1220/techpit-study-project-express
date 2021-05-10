@@ -144,15 +144,18 @@ app.get('/admin/edit', (request, response) => {
     image: null
   };
   let pageTitle = '記事の新規投稿';
+  let commentList = null;
 
   // dateパラメータありの場合は記事の編集なので該当の記事データを取得してセットする
   if (request.query.date) {
     entry = func.fileNameToEntry(request.query.date + '.txt', false);
     pageTitle = '記事の編集(' + func.convertDateFormat(entry.date) + ')';
+    commentList = func.getCommentList(entry.date);
   }
   response.render('edit', {
     entry,
-    pageTitle
+    pageTitle,
+    commentList
   });
 });
 
