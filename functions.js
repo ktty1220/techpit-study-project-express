@@ -284,6 +284,20 @@ function getCommentList(date) {
   return comments;
 }
 
+/**
+ * 投稿コメントを削除
+ */
+function deleteComment(date, idArray) {
+  if (!idArray) return;
+  const targetDir = path.join(commentsDir, date);
+  idArray.forEach((id) => {
+    const file = path.join(targetDir, id + '.txt');
+    if (fs.existsSync(file)) {
+      fs.unlinkSync(file);
+    }
+  });
+}
+
 // 外部ファイルから参照できる関数の公開設定
 module.exports = {
   getEntryFiles,
@@ -302,5 +316,6 @@ module.exports = {
   createImageDir,
   deleteImage,
   saveComment,
-  getCommentList
+  getCommentList,
+  deleteComment
 };

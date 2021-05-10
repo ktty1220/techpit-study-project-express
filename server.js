@@ -211,7 +211,7 @@ app.post('/admin/change_password', (request, response) => {
 
 app.post('/admin/delete_comment', (request, response) => {
   const { date, id } = request.body;
-  console.log(id);
+  func.deleteComment(date, id);
   response.redirect('/admin/edit?date=' + date);
 });
 
