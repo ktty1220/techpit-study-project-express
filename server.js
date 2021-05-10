@@ -209,6 +209,12 @@ app.post('/admin/change_password', (request, response) => {
   response.send('パスワードを変更しました。');
 });
 
+app.post('/admin/delete_comment', (request, response) => {
+  const { date, id } = request.body;
+  console.log(id);
+  response.redirect('/admin/edit?date=' + date);
+});
+
 // Expressサーバー起動
 const server = app.listen(15864, () => {
   console.log('Listening on http://127.0.0.1:' + server.address().port + '/');
