@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 app.locals.convertDateFormat = func.convertDateFormat;
 
 // POSTリクエストのパラメータを取得するための設定
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // ブラウザから送信されてきたクッキーを取得するための設定
 const cookieParser = require('cookie-parser');
