@@ -13,8 +13,6 @@ const commentsDir = path.join(__dirname, 'comments');
 const imagesDir = path.join(__dirname, 'public/images');
 // ハッシュ化パスワードの保存先ファイル
 const passwordFile = path.join(__dirname, '/.password');
-// セッションID保存ファイル
-const sessionFile = path.join(__dirname, '/.session');
 
 /**
  * ブログ記事フォルダ内のファイル名一覧をファイル名の降順でソートした配列で取得
@@ -174,30 +172,6 @@ function loadPassword() {
 }
 
 /**
- * セッションIDをファイルに保存
- */
-function saveSessionId(sessionId) {
-  fs.writeFileSync(sessionFile, sessionId);
-}
-
-/**
- * セッションIDをファイルから取得
- */
-function loadSessionId() {
-  if (fs.existsSync(sessionFile)) {
-    return fs.readFileSync(sessionFile, 'utf-8');
-  }
-  return null;
-}
-
-/**
- * セッションIDファイルを削除
- */
-function deleteSessionId(sessionId) {
-  fs.unlinkSync(sessionFile);
-}
-
-/**
  * ブログ記事に紐づく画像ファイルを格納するフォルダを作成する
  */
 function createImageDir(date) {
@@ -326,9 +300,6 @@ module.exports = {
   getDateString,
   savePassword,
   loadPassword,
-  saveSessionId,
-  loadSessionId,
-  deleteSessionId,
   createImageDir,
   deleteImage,
   saveComment,
