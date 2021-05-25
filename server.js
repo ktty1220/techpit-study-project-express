@@ -100,7 +100,7 @@ app.get('/blog/:date', (request, response) => {
 app.post('/blog/:date/post_comment', (request, response) => {
   const { date } = request.params;
   const { comment } = request.body;
-  if (comment) {
+  if (comment && request.body.captcha === request.session.captcha) {
     func.saveComment(date, comment);
   }
   response.redirect('/blog/' + date);
