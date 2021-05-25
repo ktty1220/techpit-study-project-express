@@ -115,28 +115,25 @@ app.get('/login', (request, response) => {
 app.post('/auth', (request, response) => {
   const hashed = func.loadPassword();
   if (hashed && bcrypt.compareSync(request.body.password, hashed)) {
-    const sessionId = cryptoRandomString({
-      length: 100
+    request.session.admin = true;
+    request.session.save(() => {
+      response.redirect('/admin/');
     });
-    func.saveSessionId(sessionId);
-    response.cookie('session', sessionId, {
-      httpOnly: true
-    });
-    response.redirect('/admin/');
   } else {
     response.redirect('/login?failed=1');
   }
 });
 
 app.get('/logout', (request, response) => {
-  func.deleteSessionId();
-  response.redirect('/login');
+  delete request.session.admin;
+  request.session.save(() => {
+    response.redirect('/login');
+  });
 });
 
 app.use('/admin/', (request, response, next) => {
-  // ログインセッションIDがクッキーに設定されているものと一致しなければログイン画面に戻す
-  const sessionId = func.loadSessionId();
-  if (sessionId && request.cookies.session === sessionId) {
+  // 管理者権限がなければログイン画面に戻す
+  if (request.session.admin) {
     next();
   } else {
     response.redirect('/login');
