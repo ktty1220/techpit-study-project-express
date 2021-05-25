@@ -4,8 +4,6 @@ const path = require('path');
 const express = require('express');
 // パスワードハッシュ化パッケージを読み込み
 const bcrypt = require('bcryptjs');
-// ランダム文字列生成パッケージを読み込み
-const cryptoRandomString = require('crypto-random-string');
 // 同じフォルダにあるfunctions.jsを読み込み
 const func = require('./functions');
 
