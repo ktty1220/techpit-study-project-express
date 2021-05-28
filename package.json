@@ -4,7 +4,7 @@
   "description": "Techpit「実務を意識した JavaScript の WEB システム開発体験を通して知識と考え方を身に付けよう！」教材プロジェクト",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon --ext js server.js",
     "reset": "node password-reset.js"
   },
   "dependencies": {
