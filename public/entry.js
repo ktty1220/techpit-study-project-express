@@ -2,13 +2,13 @@ const captchaImage = document.querySelector('.captcha-image');
 
 // CAPTCHA画像表示
 fetch('/captcha_image')
-  .then((response) => {
+  .then(function (response) {
     return response.text();
   })
-  .then((svg) => {
+  .then(function (svg) {
     captchaImage.innerHTML = svg;
   })
-  .catch((err) => {
+  .catch(function (err) {
     console.error(err);
     alert('認証用画像を取得できません。');
   });
