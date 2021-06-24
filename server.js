@@ -52,6 +52,10 @@ app.use(
   })
 );
 
+// flashメッセージを使用するための設定
+const flash = require('connect-flash');
+app.use(flash());
+
 // ルーティング設定
 app.get('/blog/', (request, response) => {
   // ブログ記事ファイル一覧取得
@@ -93,17 +97,26 @@ app.get('/blog/:date', (request, response) => {
   response.render('entry', {
     entry,
     commentList,
-    sideList
+    sideList,
+    message: request.flash('post_comment_error')[0],
+    commentInput: request.flash('post_comment_input')[0]
   });
 });
 
 app.post('/blog/:date/post_comment', (request, response) => {
   const { date } = request.params;
   const { comment, captcha } = request.body;
-  if (comment && captcha && captcha === request.session.captcha) {
+  if (!comment) {
+    request.flash('post_comment_error', 'コメントが未入力です。');
+  } else if (!captcha || captcha !== request.session.captcha) {
+    request.flash('post_comment_error', '画像認証文字が一致しませんでした。');
+    request.flash('post_comment_input', comment);
+  } else {
     func.saveComment(date, comment);
   }
-  response.redirect('/blog/' + date);
+  request.session.save(() => {
+    response.redirect('/blog/' + date);
+  });
 });
 
 app.get('/captcha_image', (request, response) => {
